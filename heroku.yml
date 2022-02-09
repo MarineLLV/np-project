@@ -4,4 +4,4 @@ setup:
       as: DATABASE
 build:
   docker:
-    web: Dockerfile
+    web: docker/8.1/Dockerfile
