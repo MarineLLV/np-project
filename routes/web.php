@@ -24,7 +24,7 @@ Route::get('/', function () {
     }); */
 
     return view('posts', [
-        'posts' => Post::latest()->with('category', 'author')->get(),
+        'posts' => Post::latest()->get(),
     ]);
 
 });
@@ -32,14 +32,14 @@ Route::get('/', function () {
 // Find a post by its slug and pass it to the view
 Route::get('posts/{post}', function (Post $post) {
     return view('post', [
-        'post' => $post,
+        'post' => $post
     ]);
 });
 
 // Show all posts associated with a category
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
-        'posts' => $category->posts
+        'posts' => $category->posts->load(['category', 'author'])
     ]);
 });
 
